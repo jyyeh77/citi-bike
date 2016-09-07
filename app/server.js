@@ -11,6 +11,9 @@ let browserPath = path.join(root, './browser');
 let npmPath = path.join(root, './node_modules');
 let publicPath = path.join(root, './public');
 
+//routers
+const apiRouter = require('./routes/api');
+
 // logging middleware
 app.use(morgan('dev'));
 
@@ -22,6 +25,8 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static(browserPath));
 app.use(express.static(npmPath));
 app.use(express.static(publicPath));
+
+app.use('/api', apiRouter);
 
 app.listen(3000,function(){
   console.log("Live at Port 3000");

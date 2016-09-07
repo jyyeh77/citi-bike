@@ -18,17 +18,21 @@
 
 
     <!--ANGULAR SCRIPTS-->
-    <script src="/controllers/map.controller.js" defer></script>
+    <script src="/controllers/sidebar.controller.js" defer></script>
     <script src="/states/about.state.js" defer></script>
     <script src="/states/home.state.js" defer></script>
 
 </head>
 <body ng-app="citibike">
 
-<div class="container" style="margin-right: 0px" ng-controller="MapCtrl">
+<div class="container" style="margin-right: 0px">
     <div class="row">
+        <select >
+            <option ng-repeat="station in stations">{{station.name}}</option>
+        </select>
         <!--SIDEBAR-->
         <div id="sidebar-wrapper">
+
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a ui-sref="home">
@@ -44,22 +48,16 @@
                 <li>
                     <a href="#">Favorites</a>
                 </li>
-                <!--<li>-->
-                    <!--<a href="#">Services</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a ui-sref="contact">Contact</a>-->
-                <!--</li>-->
             </ul>
         </div>
         <ui-view>
             <!--GOOGLE MAP USING NG-MAP-->
-            <div>
-                <div map-lazy-load="https://maps.google.com/maps/api/js"
-                     map-lazy-load-params="AIzaSyDBTSwLxyCS3yKklkOFjXFWZK274ycbK8Y">
-                    <ng-map style="height: 100vh" center="[40.76,-73.98]" zoom="12"></ng-map>
-                </div>
-            </div>
+            <!--<div>-->
+                <!--<div map-lazy-load="https://maps.google.com/maps/api/js"-->
+                     <!--map-lazy-load-params="AIzaSyDBTSwLxyCS3yKklkOFjXFWZK274ycbK8Y">-->
+                    <!--<ng-map style="height: 100vh" center="[40.76,-73.98]" zoom="12"></ng-map>-->
+                <!--</div>-->
+            <!--</div>-->
         </ui-view>
 
     </div>

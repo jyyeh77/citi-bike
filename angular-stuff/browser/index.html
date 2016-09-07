@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Justin's Website</title>
+    <script src="/angular/angular.js"></script>
+    <script src="/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/app.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link href="/simple-sidebar.css" rel="stylesheet">
+    <script src="/js/ng-map.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js"></script>
+    <script src="/states/about.state.js" defer></script>
+    <script src="/states/home.state.js" defer></script>
+    <script src="/states/contact.state.js" defer></script>
+</head>
+<body ng-app="citibike">
+
+<div class="container" style="margin-right: 0px">
+    <div class="row">
+
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Bike Planner
+                    </a>
+                </li>
+                <li>
+                    <a>Starting point:</a>
+                </li>
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <a href="#">Favorites</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div map-lazy-load="https://maps.google.com/maps/api/js"
+         map-lazy-load-params="AIzaSyDBTSwLxyCS3yKklkOFjXFWZK274ycbK8Y">
+        <ng-map style="height: 100vh" center="[40.76,-73.98]" zoom="12"></ng-map>
+    </div>
+</div>
+</div>
+
+
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="#">
+                Bike Planner
+            </a>
+        </li>
+        <li>
+            <a>Starting point:</a>
+        </li>
+        <li>
+            <a href="#">Overview</a>
+        </li>
+        <li>
+            <a href="#">Favorites</a>
+        </li>
+        <li>
+            <a href="#">About</a>
+        </li>
+        <li>
+            <a href="#">Services</a>
+        </li>
+        <li>
+            <a href="#">Contact</a>
+        </li>
+    </ul>
+</div>
+<!--<ui-view></ui-view>-->
+</body>
+</html>

@@ -1,3 +1,10 @@
 /*.jumbotron h2 {*/
     /*text-decoration: underline;  }*/
 
+.email {
+    font-style: italic
+}
+
+#citibikeTitle {
+    color: dodgerblue;
+}

@@ -2,7 +2,7 @@
     <div map-lazy-load="https://maps.google.com/maps/api/js"
          map-lazy-load-params="AIzaSyDBTSwLxyCS3yKklkOFjXFWZK274ycbK8Y">
         <ng-map style="height: 100vh" center="[40.76,-73.98]" zoom="14" zoom-to-inlude-markers="true" >
-            <marker position="[{{station.lat}}, {{station.lon}}]" ng-repeat="station in stations">
+                <marker ng-repeat="station in stations"  position="[{{station.lat}}, {{station.lon}}]" on-click="getInfo(event, {{station}})"></marker>
         </ng-map>
     </div>
 </div>

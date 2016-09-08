@@ -19,6 +19,7 @@
 
     <!--ANGULAR SCRIPTS-->
     <script src="/controllers/sidebar.controller.js" defer></script>
+    <script src="/controllers/map.controller.js" defer></script>
     <script src="/states/about.state.js" defer></script>
     <script src="/states/home.state.js" defer></script>
 
@@ -50,15 +51,9 @@
                 </li>
             </ul>
         </div>
-        <ui-view>
-            <!--GOOGLE MAP USING NG-MAP-->
-            <!--<div>-->
-                <!--<div map-lazy-load="https://maps.google.com/maps/api/js"-->
-                     <!--map-lazy-load-params="AIzaSyDBTSwLxyCS3yKklkOFjXFWZK274ycbK8Y">-->
-                    <!--<ng-map style="height: 100vh" center="[40.76,-73.98]" zoom="12"></ng-map>-->
-                <!--</div>-->
-            <!--</div>-->
-        </ui-view>
+
+        <!--STATE TEMPLATES GO HERE!-->
+        <ui-view></ui-view>
 
     </div>
 

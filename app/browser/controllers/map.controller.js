@@ -1,4 +1,4 @@
-app.controller('MapCtrl', function($scope, NgMap) {
+app.controller('MapCtrl', function($rootScope, $scope, NgMap) {
 
 	NgMap.getMap().then(function(map) {
 		console.log(map.getCenter());

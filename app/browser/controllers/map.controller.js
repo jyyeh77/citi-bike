@@ -9,7 +9,8 @@ app.controller('MapCtrl', function($rootScope, $scope, NgMap, StationFactory) {
 	$scope.setStation = function(event, station){
 		// this sets selected station in factory, will be either start/destination depending on factory variables
 		StationFactory.setStation(station);
-
+		// console.log("MARKER: ", this.label = "G");
+		console.log(this);
 		// this isn't useful right now!
 		$scope.stationId = StationFactory.getStartStation().station_id;
 		$scope.stationName = StationFactory.getStartStation().name;

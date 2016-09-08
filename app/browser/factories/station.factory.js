@@ -3,16 +3,16 @@
 app.factory('StationFactory', function () {
 	var StationFactory = {};
 	var stationStorage = {};
-	var startStation;
 	var currentStation;
 	var startAlreadySet;
+	var endAlreadySet;
 
 	// retrieves station info at selected marker upon click
 	StationFactory.setStation = function (station) {
 		currentStation = station;
 
 		// if start isn't saved, set starting station - else set destination
-		(!startAlreadySet) ? stationStorage['start'] = currentStation : stationStorage['end'] = currentStation;
+		(!startAlreadySet) ? stationStorage['start'] = currentStation : (!endAlreadySet) ? stationStorage['end'] = currentStation : Object.freeze(stationStorage);
 		console.log("STATION STORAGE: ", stationStorage);
 	}
 
@@ -31,6 +31,10 @@ app.factory('StationFactory', function () {
 	// for destinations
 	StationFactory.getDestination = function () {
 		return stationStorage.end;
+	}
+
+	StationFactory.saveEnd = function () {
+		endAlreadySet = true;
 	}
 
 	return StationFactory;

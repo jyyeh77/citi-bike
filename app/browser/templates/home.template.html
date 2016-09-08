@@ -1,9 +1,9 @@
-<div>
-    <div map-lazy-load="https://maps.google.com/maps/api/js"
-         map-lazy-load-params="AIzaSyDBTSwLxyCS3yKklkOFjXFWZK274ycbK8Y">
-        <ng-map style="height: 100vh" center="[40.76,-73.98]" zoom="14" zoom-to-inlude-markers="true" >
-                <marker ng-repeat="station in stations" ng-class="{'active': station.station_id === stationId}" position="[{{station.lat}}, {{station.lon}}]" on-click="setStation(event, {{station}})"></marker>
-        </ng-map>
-    </div>
-</div>
+<!--takes parameters from scope-->
+<ui-gmap-google-map center="mapInfo.center" zoom="mapInfo.zoom">
+    <ui-gmap-marker ng-repeat="station in stations"
+                    idKey="station.station_id"
+                    coords="station.coords"
+                    events="events"
+    ></ui-gmap-marker>
+</ui-gmap-google-map>
 

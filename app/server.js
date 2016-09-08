@@ -1,15 +1,15 @@
-var express = require("express");
-var app = express();
-var router = express.Router();
-var morgan = require('morgan');
-var path = require('path');
-var bodyParser = require('body-parser');
+const express = require("express");
+const app = express();
+const router = express.Router();
+const morgan = require('morgan');
+const path = require('path');
+const bodyParser = require('body-parser');
 
 // Path definitions
-let root = path.dirname(require.main.filename);
-let browserPath = path.join(root, './browser');
-let npmPath = path.join(root, './node_modules');
-let publicPath = path.join(root, './public');
+const root = path.dirname(require.main.filename);
+const browserPath = path.join(root, './browser');
+const npmPath = path.join(root, './node_modules');
+const publicPath = path.join(root, './public');
 
 //routers
 const apiRouter = require('./routes/api');

@@ -1,6 +1,6 @@
 'use strict'
 
-app.factory('StationFactory', function () {
+app.factory('StationFactory', function ($rootScope) {
 	var StationFactory = {};
 	var stationStorage = {};
 	var currentStation;
@@ -14,28 +14,29 @@ app.factory('StationFactory', function () {
 		// if start isn't saved, set starting station - else set destination
 		(!startAlreadySet) ? stationStorage['start'] = currentStation : (!endAlreadySet) ? stationStorage['end'] = currentStation : Object.freeze(stationStorage);
 		console.log("STATION STORAGE: ", stationStorage);
-	}
+	};
 
 	// functions for starting station!
 	StationFactory.getStartStation = function () {
 		return stationStorage.start;
-	}
+	};
 
 	StationFactory.getStartStatus = function () {
 		return startAlreadySet;
-	}
+	};
+
 	StationFactory.saveStart = function () {
 		startAlreadySet = true;
-	}
+	};
 
 	// for destinations
 	StationFactory.getDestination = function () {
 		return stationStorage.end;
-	}
+	};
 
 	StationFactory.saveEnd = function () {
 		endAlreadySet = true;
-	}
+	};
 
 	return StationFactory;
-})
+});

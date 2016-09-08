@@ -1,18 +1,10 @@
-/*.jumbotron h2 {*/
-    /*text-decoration: underline;  }*/
 
 /*STYLING FOR ABOUT PAGE*/
 .email {
     font-style: italic
 }
 
-#citibikeTitle {
-    color: dodgerblue;
+/*TODO map doesnt take up the right width, problem with sidebar styling*/
+.angular-google-map-container {
+    height: 100vh;
 }
-
-/*CUSTOM STYLING FOR MAP MARKERS*/
-/*marker.active {*/
-    /*width: 500px;*/
-    /*height: 500px;*/
-/*}*/
-

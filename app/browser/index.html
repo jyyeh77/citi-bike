@@ -19,19 +19,19 @@
 
     <!--ANGULAR SCRIPTS-->
     <script src="/controllers/sidebar.controller.js" defer></script>
+    <script src="/controllers/map.controller.js" defer></script>
     <script src="/states/about.state.js" defer></script>
     <script src="/states/home.state.js" defer></script>
+    <script src="/factories/station.factory.js" defer></script>
 
 </head>
 <body ng-app="citibike">
 
 <div class="container" style="margin-right: 0px">
     <div class="row">
-        <select >
-            <option ng-repeat="station in stations">{{station.name}}</option>
-        </select>
+
         <!--SIDEBAR-->
-        <div id="sidebar-wrapper">
+        <div id="sidebar-wrapper" ng-controller="SidebarCtrl">
 
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
@@ -40,25 +40,23 @@
                     </a>
                 </li>
                 <li>
-                    <a>Starting point:</a>
-                </li>
-                <li>
                     <a ui-sref="about">About</a>
                 </li>
                 <li>
                     <a href="#">Favorites</a>
                 </li>
+                <br>
+                <button class="btn btn-danger" ng-click="getStart()">See What Lies Ahead</button>
+                <br>
+                <li ng-show="start">
+                    <text>Start: {{start.name}}</text>
+                </li>
             </ul>
+
         </div>
-        <ui-view>
-            <!--GOOGLE MAP USING NG-MAP-->
-            <!--<div>-->
-                <!--<div map-lazy-load="https://maps.google.com/maps/api/js"-->
-                     <!--map-lazy-load-params="AIzaSyDBTSwLxyCS3yKklkOFjXFWZK274ycbK8Y">-->
-                    <!--<ng-map style="height: 100vh" center="[40.76,-73.98]" zoom="12"></ng-map>-->
-                <!--</div>-->
-            <!--</div>-->
-        </ui-view>
+
+        <!--STATE TEMPLATES GO HERE!-->
+        <ui-view></ui-view>
 
     </div>
 

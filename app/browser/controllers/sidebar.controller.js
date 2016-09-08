@@ -1,6 +1,8 @@
 'use strict'
 
-app.controller('SidebarCtrl', function($scope, stations){
-	$scope.stations = stations;
-	console.log($scope.stations);
+// TODO: Do we actually need this??
+app.controller('SidebarCtrl', function($scope, StationFactory){
+	$scope.getStart = function(){
+		$scope.start = StationFactory.getStation();
+	}
 })

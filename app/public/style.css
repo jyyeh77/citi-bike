@@ -1,4 +1,3 @@
-
 /*STYLING FOR ABOUT PAGE*/
 .email {
     font-style: italic
@@ -7,4 +6,18 @@
 /*TODO map doesnt take up the right width, problem with sidebar styling*/
 .angular-google-map-container {
     height: 100vh;
+}
+
+.remove-btn {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    display: inline;
+    margin: 0;
+}
+
+.remove-btn:hover {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
 }

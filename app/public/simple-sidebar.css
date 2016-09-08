@@ -73,6 +73,19 @@ body {
     font-weight: bold;
 }
 
+.sidebar-nav .remove-btn {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    display: inline;
+}
+
+.sidebar-nav .remove-btn:hover {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+
 .sidebar-nav li {
     text-indent: 20px;
     line-height: 40px;

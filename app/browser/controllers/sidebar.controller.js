@@ -1,34 +1,46 @@
-'use strict'
+'use strict';
 
-app.controller('SidebarCtrl', function($scope, StationFactory){
+app.controller('SidebarCtrl', function ($scope, StationFactory) {
 
 	// will hide sidebar for now...
 	$scope.setToggle = function () {
 		$scope.isToggled = true;
-	}
+	};
 
-	// actively updates starting station in side-bar
-	$scope.$watch(function () { return StationFactory.getStartStation(); },
-		function (station) {
-			$scope.startStation = station;
-		}
-	)
+	$scope.$watch(()=> {
+		return StationFactory.getStart();
+	}, (start)=> {
+		$scope.start = start;
+	});
 
-	// saves starting station and prevents additional stations from being set as start in factory
-	$scope.saveStart = function () {
-		StationFactory.saveStart();
-	}
+	$scope.$watch(()=> {
+		return StationFactory.getEnd();
+	}, (end)=> {
+		$scope.end = end;
+	});
 
-	// updates destination in side-bar
-	$scope.$watch(function(){ return StationFactory.getDestination(); },
-		function (station) {
-			$scope.endStation = station;
-		}
-	)
+	$scope.$watch(()=> {
+		return StationFactory.startLocked();
+	}, (startLocked)=> {
+		$scope.startLocked = startLocked;
+	});
 
-	$scope.saveEnd = function () {
-		StationFactory.saveEnd();
-	}
+	$scope.$watch(()=> {
+		return StationFactory.endLocked();
+	}, (endLocked)=> {
+		$scope.endLocked = endLocked;
+	});
+
+	$scope.unlockStart = function () {
+		StationFactory.unlockStart();
+	};
 
 
-})
+	$scope.unlockEnd = function () {
+		StationFactory.unlockEnd();
+	};
+
+	$scope.lockStart = StationFactory.lockStart;
+	$scope.lockEnd = StationFactory.lockEnd;
+
+});

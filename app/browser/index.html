@@ -12,10 +12,14 @@
     <link href="/simple-sidebar.css" rel="stylesheet">
     <link href="/style.css" rel="stylesheet">
 
-    <!--For NG-MAP-->
-    <script src="/js/ng-map.min.js"></script>
-    <script src="http://maps.google.com/maps/api/js"></script>
+    <!--&lt;!&ndash;For NG-MAP&ndash;&gt;-->
+    <!--<script src="/js/ng-map.min.js"></script>-->
+    <!--<script src="http://maps.google.com/maps/api/js"></script>-->
 
+    <!--angular google maps dependencies-->
+    <script src="/lodash/lodash.min.js"></script>
+    <script src="/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+    <script src="/angular-google-maps/dist/angular-google-maps.min.js"></script>
 
     <!--ANGULAR SCRIPTS-->
     <script src="/controllers/sidebar.controller.js" defer></script>
@@ -33,7 +37,6 @@
         <!--SIDEBAR-->
         <div id="wrapper" ng-class="{'toggled': isToggled}" ng-controller="SidebarCtrl">
             <div id="sidebar-wrapper">
-
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
                         <a ui-sref="home">
@@ -47,14 +50,14 @@
                         <a href="#">Favorites</a>
                     </li>
                     <li>
-                        <text>Start: {{startStation.name}}</text>
+                        <text>Start: {{start.name}} </text> <button type="button" class="btn btn-default btn-xs remove-btn" ng-show="startLocked" ng-click="unlockStart()">X</button>
                     </li>
                     <li>
-                        <text>End: {{endStation.name}}</text>
+                        <text>End: {{end.name}}</text> <button type="button" class="btn btn-default btn-xs remove-btn" ng-show="endLocked" ng-click="unlockEnd()">X</button>
                     </li>
-                    <button id="startBtn" class="btn btn-primary" ng-show="startStation" ng-click="saveStart()">Set Start</button>
+                    <button id="startBtn" class="btn btn-primary" ng-show="start&&!startLocked" ng-click="lockStart()">Set Start</button>
                     <br>
-                    <button id="endBtn" class="btn btn-primary" ng-show="endStation" ng-click="saveEnd()">Set Destination</button>
+                    <button id="endBtn" class="btn btn-primary" ng-show="end&&!endLocked" ng-click="lockEnd()">Set End</button>
                     <br>
                     <button class="btn btn-danger">Trip Information</button>
                     <br>

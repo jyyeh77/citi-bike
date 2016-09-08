@@ -1,41 +1,74 @@
-'use strict'
+'use strict';
 
-app.factory('StationFactory', function () {
-	var StationFactory = {};
-	var stationStorage = {};
-	var currentStation;
-	var startAlreadySet;
-	var endAlreadySet;
+app.factory('StationFactory', function ($rootScope) {
+	let StationFactory = {};
+	let start = null;
+	let end = null;
+	let startLocked = false;
+	let endLocked = false;
+	let startMarker;
+	let endMarker;
 
-	// retrieves station info at selected marker upon click
-	StationFactory.setStation = function (station) {
-		currentStation = station;
+	//icon stuff
+	const goldenrod = 'fafad2'; //defualt color
+	const red = 'ff4500' //end color
+	const blue = '1e90ff' //start color
+	const icon = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|';
 
-		// if start isn't saved, set starting station - else set destination
-		(!startAlreadySet) ? stationStorage['start'] = currentStation : (!endAlreadySet) ? stationStorage['end'] = currentStation : Object.freeze(stationStorage);
-		console.log("STATION STORAGE: ", stationStorage);
-	}
+	//setters
+	StationFactory.setStart = function (station, marker) {
+		if (!startLocked) {
+			startMarker = marker;
+			start = station;
+		}
+	};
 
-	// functions for starting station!
-	StationFactory.getStartStation = function () {
-		return stationStorage.start;
-	}
+	StationFactory.setEnd = function (station, marker) {
+		if (!endLocked) {
+			endMarker = marker;
+			end = station;
+		}
+	};
 
-	StationFactory.getStartStatus = function () {
-		return startAlreadySet;
-	}
-	StationFactory.saveStart = function () {
-		startAlreadySet = true;
-	}
+	//getters
+	StationFactory.getStart = function () {
+		return start;
+	};
 
-	// for destinations
-	StationFactory.getDestination = function () {
-		return stationStorage.end;
-	}
+	StationFactory.getEnd = function () {
+		return end;
+	};
 
-	StationFactory.saveEnd = function () {
-		endAlreadySet = true;
-	}
+	//lock and unlock
+	StationFactory.startLocked = function(){
+		return startLocked;
+	};
+
+	StationFactory.endLocked = function () {
+		return endLocked;
+	};
+
+	StationFactory.lockStart = function () {
+		startLocked = true;
+		startMarker.setIcon(`${icon}${blue}`);
+	};
+
+	StationFactory.lockEnd = function () {
+		endLocked = true;
+		endMarker.setIcon(`${icon}${red}`);
+	};
+
+	StationFactory.unlockStart = function () {
+		startMarker.setIcon(`${icon}${goldenrod}`);
+		startLocked = false;
+	};
+
+	StationFactory.unlockEnd = function () {
+		endMarker.setIcon(`${icon}${goldenrod}`);
+		endLocked = false;
+	};
+
+
 
 	return StationFactory;
-})
+});

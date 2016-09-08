@@ -1,8 +1,11 @@
 'use strict'
 
-// TODO: Do we actually need this??
 app.controller('SidebarCtrl', function($scope, StationFactory){
-	$scope.getStart = function(){
-		$scope.start = StationFactory.getStation();
-	}
+
+	// actively updates starting station in side-bar
+	$scope.$watch(function () { return StationFactory.getStation(); },
+		function (station) {
+			$scope.startStation = station;
+		}
+	)
 })

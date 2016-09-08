@@ -31,29 +31,36 @@
     <div class="row">
 
         <!--SIDEBAR-->
-        <div id="sidebar-wrapper" ng-controller="SidebarCtrl">
+        <div id="wrapper" ng-class="{'toggled': isToggled}" ng-controller="SidebarCtrl">
+            <div id="sidebar-wrapper">
 
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a ui-sref="home">
-                        Bike Planner
-                    </a>
-                </li>
-                <li>
-                    <a ui-sref="about">About</a>
-                </li>
-                <li>
-                    <a href="#">Favorites</a>
-                </li>
-                <li>
-                    <text>Start: {{startStation.name}}</text>
-                </li>
-                <br>
-                <button class="btn btn-danger">Trip Information</button>
-                <br>
-
-            </ul>
-
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a ui-sref="home">
+                            Plan Your Ride
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="about">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Favorites</a>
+                    </li>
+                    <li>
+                        <text>Start: {{startStation.name}}</text>
+                    </li>
+                    <li>
+                        <text>End: {{endStation.name}}</text>
+                    </li>
+                    <button id="startBtn" class="btn btn-primary" ng-show="startStation" ng-click="saveStart()">Set Start</button>
+                    <br>
+                    <button id="endBtn" class="btn btn-primary" ng-show="endStation" ng-click="saveEnd()">Set Destination</button>
+                    <br>
+                    <button class="btn btn-danger">Trip Information</button>
+                    <br>
+                    <button class="btn btn-success" ng-click="setToggle()">Toggle Menu</button>
+                </ul>
+            </div>
         </div>
 
         <!--STATE TEMPLATES GO HERE!-->

@@ -19,7 +19,8 @@ app.run(function ($rootScope, $state, $http, $log){
 				station.coords = {
 					latitude: station.lat,
 					longitude: station.lon
-				}
+				};
+				console.log(station);
 			});
 			$rootScope.stations = stations;
 			$state.go('home');

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 app.factory('StationFactory', function ($rootScope) {
 	var StationFactory = {};
@@ -37,6 +37,11 @@ app.factory('StationFactory', function ($rootScope) {
 	StationFactory.saveEnd = function () {
 		endAlreadySet = true;
 	};
+
+	StationFactory.setStart = function (marker) {
+
+	};
+
 
 	return StationFactory;
 });

@@ -11,9 +11,8 @@ app.controller('MapCtrl', function ($rootScope, $scope, StationFactory, uiGmapGo
 	//an object with events as keys and even handlers as values
 	$scope.events = {
 		mouseup: function (marker, eventName, models, arguments) {
-			marker.setIcon('startlogo.png');
-			$scope.currentStation = models.$parent.station;
-			console.dir($scope.currentStation);
+			let station = models.$parent.station;
+			(StationFactory.start) ? StationFactory.setEnd(station, marker) : StationFactory.setStart(station, marker);
 		}
 	};
 

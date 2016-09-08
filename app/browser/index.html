@@ -37,7 +37,6 @@
         <!--SIDEBAR-->
         <div id="wrapper" ng-class="{'toggled': isToggled}" ng-controller="SidebarCtrl">
             <div id="sidebar-wrapper">
-
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
                         <a ui-sref="home">
@@ -51,10 +50,10 @@
                         <a href="#">Favorites</a>
                     </li>
                     <li>
-                        <text>Start: {{startStation.name}}</text>
+                        <text>Start: {{start.name}}</text>
                     </li>
                     <li>
-                        <text>End: {{endStation.name}}</text>
+                        <text>End: {{end.name}}</text>
                     </li>
                     <button id="startBtn" class="btn btn-primary" ng-show="startStation" ng-click="saveStart()">Set Start</button>
                     <br>

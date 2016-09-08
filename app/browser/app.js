@@ -10,5 +10,4 @@ app.run(function ($rootScope, $state, $http, $log){
 			$state.go('home');
 		})
 		.catch($log)
-
 })

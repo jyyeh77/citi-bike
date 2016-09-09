@@ -1,10 +1,20 @@
 <!--takes parameters from scope-->
-<ui-gmap-google-map center="mapInfo.center" zoom="mapInfo.zoom">
-    <ui-gmap-marker ng-repeat="station in stations"
-                    idKey="station.station_id"
-                    coords="station.coords"
-                    events="events"
-                    options="options"
-    ></ui-gmap-marker>
+<ui-gmap-google-map center="mapInfo.center" zoom="mapInfo.zoom" control="mapInfo.control">
+    <!--<ui-gmap-marker ng-repeat="station in stations"-->
+    <!--idKey="station.station_id"-->
+    <!--coords="station.coords"-->
+    <!--events="events"-->
+    <!--options="options"-->
+    <!--control="mapInfo.markersControl"-->
+    <!--&gt;</ui-gmap-marker>-->
+    <ui-gmap-markers
+            models="stations"
+            idKey="'station_id'"
+            coords="'coords'"
+            events="events"
+            options="options"
+            control="mapInfo.markerControl"
+    >
+    </ui-gmap-markers>
 </ui-gmap-google-map>
 

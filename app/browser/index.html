@@ -23,6 +23,8 @@
     <script src="/states/about.state.js" defer></script>
     <script src="/states/home.state.js" defer></script>
     <script src="/factories/station.factory.js" defer></script>
+    <script src="/controllers/info.controller.js" defer></script>
+    <script src="/states/info.state.js" defer></script>
 
 </head>
 <body ng-app="citibike">
@@ -55,7 +57,7 @@
                     <br>
                     <button id="endBtn" class="btn btn-primary" ng-show="end&&!endLocked" ng-click="lockEnd()">Set End</button>
                     <br>
-                    <button class="btn btn-danger">Trip Information</button>
+                    <button class="btn btn-danger" ui-sref="info" ng-show="startLocked&&endLocked">Trip Information</button>
                     <br>
                     <button class="btn btn-default" ng-click="resetMarkers()">Clear Markers</button>
                     <br>

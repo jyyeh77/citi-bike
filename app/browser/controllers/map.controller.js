@@ -14,9 +14,7 @@ app.controller('MapCtrl', function ($rootScope, $scope, StationFactory, uiGmapGo
 	uiGmapIsReady.promise()
 		.then(function (instances) {
 			$scope.stations = $rootScope.stations;
-			// this doesn't work - gets 80 stations??
-			// var markers = $scope.mapInfo.markerControl.getGMarkers();
-			// console.log($scope.mapInfo.markerControl.getPlurals())
+
 			StationFactory.setMarkers($scope.stations);
 		})
 
@@ -40,5 +38,4 @@ app.controller('MapCtrl', function ($rootScope, $scope, StationFactory, uiGmapGo
 			if (status) $scope.stations = [];
 		}
 	)
-
 });

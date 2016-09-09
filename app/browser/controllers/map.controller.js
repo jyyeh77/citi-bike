@@ -1,4 +1,4 @@
-app.controller('MapCtrl', function ($rootScope, $scope, StationFactory, uiGmapGoogleMapApi) {
+app.controller('MapCtrl', function ($rootScope, $scope, StationFactory, uiGmapGoogleMapApi, uiGmapIsReady) {
 
 	//put onto scope later
 	const mapCenter = {latitude: 40.76, longitude: -73.98};
@@ -10,15 +10,35 @@ app.controller('MapCtrl', function ($rootScope, $scope, StationFactory, uiGmapGo
 		$rootScope.map = maps;
 	});
 
+	// need this to actually set markers correctly on markers directive
+	uiGmapIsReady.promise()
+		.then(function (instances) {
+			$scope.stations = $rootScope.stations;
+			// this doesn't work - gets 80 stations??
+			// var markers = $scope.mapInfo.markerControl.getGMarkers();
+			// console.log($scope.mapInfo.markerControl.getPlurals())
+			StationFactory.setMarkers($scope.stations);
+		})
+
 	//an object with events as keys and even handlers as values
 	$scope.events = {
 		mouseup: function (marker, eventName, models, arguments) {
-			let station = models.$parent.station;
+			let station = models;
 			(StationFactory.startLocked()) ? StationFactory.setEnd(station, marker) : StationFactory.setStart(station, marker);
 		}
 	};
 
 	//puts info on scope, used in the template
-	$scope.mapInfo = {center: mapCenter, zoom: 14};
+	$scope.mapInfo = {center: mapCenter, zoom: 14, control: {}, markerControl: {}};
 	$scope.options = {icon: `${icon}${goldenrod}`};
+
+	// for clearing all markers
+	$scope.$watch(function () {
+			return StationFactory.getMarkerStatus();
+		},
+		function (status) {
+			if (status) $scope.stations = [];
+		}
+	)
+
 });

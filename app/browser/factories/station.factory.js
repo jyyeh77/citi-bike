@@ -8,6 +8,8 @@ app.factory('StationFactory', function ($rootScope) {
 	let endLocked = false;
 	let startMarker;
 	let endMarker;
+	let markers;
+	let markerReset = false;
 
 	//icon stuff
 	const goldenrod = 'fafad2'; //defualt color
@@ -17,7 +19,7 @@ app.factory('StationFactory', function ($rootScope) {
 
 	//setters
 	StationFactory.setStart = function (station, marker) {
-		if (!startLocked) {
+		if (!startLocked) { // this conditional isn't being used here...
 			startMarker = marker;
 			start = station;
 		}
@@ -29,6 +31,20 @@ app.factory('StationFactory', function ($rootScope) {
 			end = station;
 		}
 	};
+
+	StationFactory.resetStart = function () {
+		start = null;
+	}
+
+	StationFactory.resetEnd = function () {
+		end = null;
+	}
+
+	// reset both start & end
+	StationFactory.reset = function(){
+		start = null;
+		end = null;
+	}
 
 	//getters
 	StationFactory.getStart = function () {
@@ -58,17 +74,30 @@ app.factory('StationFactory', function ($rootScope) {
 		endMarker.setIcon(`${icon}${red}`);
 	};
 
+	// reset station icon color back to default after deletion of selected start selection
 	StationFactory.unlockStart = function () {
 		startMarker.setIcon(`${icon}${goldenrod}`);
 		startLocked = false;
 	};
 
+	// same as unlockStart
 	StationFactory.unlockEnd = function () {
 		endMarker.setIcon(`${icon}${goldenrod}`);
 		endLocked = false;
 	};
 
+	StationFactory.setMarkers = function(markerArray) {
+		markers = markerArray;
+		console.log("MARKERS IN FACTORY: ", markers);
+	}
 
+	StationFactory.resetMarkers = function(){
+		markerReset = true;
+	}
+
+	StationFactory.getMarkerStatus = function(){
+		return markerReset;
+	}
 
 	return StationFactory;
 });

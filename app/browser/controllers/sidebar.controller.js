@@ -38,13 +38,11 @@ app.controller('SidebarCtrl', function ($scope, StationFactory) {
 	// to clear start station
 	$scope.unlockStart = function () {
 		StationFactory.unlockStart();
-		StationFactory.resetStart();
 	};
 
 	// clears end station
 	$scope.unlockEnd = function () {
 		StationFactory.unlockEnd();
-		StationFactory.resetEnd();
 	};
 
 	// booleans for showing delete buttons for start/end

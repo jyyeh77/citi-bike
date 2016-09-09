@@ -22,7 +22,7 @@ app.controller('MapCtrl', function ($rootScope, $scope, StationFactory, uiGmapGo
 
 	//an object with events as keys and even handlers as values
 	$scope.events = {
-		mouseup: function (marker, eventName, models, arguments) {
+		click: function (marker, eventName, models, arguments) {
 			let station = models;
 			(StationFactory.startLocked()) ? StationFactory.setEnd(station, marker) : StationFactory.setStart(station, marker);
 		}

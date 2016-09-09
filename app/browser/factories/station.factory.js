@@ -19,29 +19,21 @@ app.factory('StationFactory', function ($rootScope) {
 
 	//setters
 	StationFactory.setStart = function (station, marker) {
-			startMarker = marker;
-			start = station;
+		if(startMarker)
+			startMarker.setIcon(`${icon}${goldenrod}`);
+		startMarker = marker;
+		startMarker.setIcon(`${icon}${blue}`);
+		start = station;
 	};
 
 	StationFactory.setEnd = function (station, marker) {
 		if (!endLocked) {
+			if(endMarker)
+				endMarker.setIcon(`${icon}${goldenrod}`);
 			endMarker = marker;
+			endMarker.setIcon(`${icon}${red}`);
 			end = station;
 		}
-	};
-
-	StationFactory.resetStart = function () {
-		start = null;
-	};
-
-	StationFactory.resetEnd = function () {
-		end = null;
-	};
-
-	// reset both start & end
-	StationFactory.reset = function(){
-		start = null;
-		end = null;
 	};
 
 	//getters
@@ -64,7 +56,6 @@ app.factory('StationFactory', function ($rootScope) {
 
 	StationFactory.lockStart = function () {
 		startLocked = true;
-		startMarker.setIcon(`${icon}${blue}`);
 	};
 
 	StationFactory.lockEnd = function () {
@@ -76,12 +67,14 @@ app.factory('StationFactory', function ($rootScope) {
 	StationFactory.unlockStart = function () {
 		startMarker.setIcon(`${icon}${goldenrod}`);
 		startLocked = false;
+		start = null;
 	};
 
 	// same as unlockStart
 	StationFactory.unlockEnd = function () {
 		endMarker.setIcon(`${icon}${goldenrod}`);
 		endLocked = false;
+		end = null;
 	};
 
 	StationFactory.setMarkers = function(markerArray) {

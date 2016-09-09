@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('StationFactory', function ($rootScope) {
+app.factory('StationFactory', function ($rootScope, $http, $log) {
 	let StationFactory = {};
 	let start = null;
 	let end = null;
@@ -16,6 +16,13 @@ app.factory('StationFactory', function ($rootScope) {
 	const red = 'ff4500'; //end color
 	const blue = '1e90ff'; //start color
 	const icon = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|';
+
+	// AJAX GET to retrieve all stations for trip
+	StationFactory.getAllStations = function () {
+		return $http.get('/api/scrape')
+			.then((res) => { return res.data; })
+			.catch($log.error);
+	}
 
 	//setters
 	StationFactory.setStart = function (station, marker) {
@@ -77,9 +84,9 @@ app.factory('StationFactory', function ($rootScope) {
 		end = null;
 	};
 
+	// not using this atm
 	StationFactory.setMarkers = function(markerArray) {
 		markers = markerArray;
-		console.log("MARKERS IN FACTORY: ", markers);
 	};
 
 	StationFactory.resetMarkers = function(){

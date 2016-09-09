@@ -12,17 +12,15 @@ app.factory('StationFactory', function ($rootScope) {
 	let markerReset = false;
 
 	//icon stuff
-	const goldenrod = 'fafad2'; //defualt color
-	const red = 'ff4500' //end color
-	const blue = '1e90ff' //start color
+	const goldenrod = 'fafad2'; //default color
+	const red = 'ff4500'; //end color
+	const blue = '1e90ff'; //start color
 	const icon = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|';
 
 	//setters
 	StationFactory.setStart = function (station, marker) {
-		if (!startLocked) { // this conditional isn't being used here...
 			startMarker = marker;
 			start = station;
-		}
 	};
 
 	StationFactory.setEnd = function (station, marker) {
@@ -34,17 +32,17 @@ app.factory('StationFactory', function ($rootScope) {
 
 	StationFactory.resetStart = function () {
 		start = null;
-	}
+	};
 
 	StationFactory.resetEnd = function () {
 		end = null;
-	}
+	};
 
 	// reset both start & end
 	StationFactory.reset = function(){
 		start = null;
 		end = null;
-	}
+	};
 
 	//getters
 	StationFactory.getStart = function () {
@@ -89,7 +87,7 @@ app.factory('StationFactory', function ($rootScope) {
 	StationFactory.setMarkers = function(markerArray) {
 		markers = markerArray;
 		console.log("MARKERS IN FACTORY: ", markers);
-	}
+	};
 
 	StationFactory.resetMarkers = function(){
 		markerReset = true;

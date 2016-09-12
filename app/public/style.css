@@ -8,6 +8,11 @@
     height: 100vh;
 }
 
+.container {
+    width: 80%;
+    margin-left: 250px;
+}
+
 .remove-btn {
     color: #fff;
     background-color: #d9534f;

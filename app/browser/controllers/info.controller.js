@@ -14,4 +14,6 @@ app.controller('InfoCtrl', function($scope, stations, StationFactory){
 		}
 	})
 
+	// last update time attached as last object of resolved stations
+	$scope.time = new Date(stations[stations.length - 1].lastUpdate * 1000);
 })

@@ -15,6 +15,7 @@ app.controller('MapCtrl', function ($rootScope, $scope, StationFactory, uiGmapGo
 		.then(function (instances) {
 			$scope.stations = $rootScope.stations;
 
+			// this isn't being used now
 			StationFactory.setMarkers($scope.stations);
 		})
 

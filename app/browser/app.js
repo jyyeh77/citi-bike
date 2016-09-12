@@ -7,7 +7,6 @@ app.config(function(uiGmapGoogleMapApiProvider) {
 	});
 });
 
-
 app.run(function ($rootScope, $state, $http, $log){
 	$http.get('/api/stations')
 		.then(function(res){

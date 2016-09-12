@@ -3,6 +3,7 @@ const request = require('request');
 const router = express.Router();
 const Station = require('../models/station');
 
+// route to load all station markers from DB
 router.get('/stations', function (req, res, next) {
 	Station.findAll({
 		attributes: ['station_id', 'name', 'lat', 'lon', 'capacity'],
@@ -14,6 +15,7 @@ router.get('/stations', function (req, res, next) {
 	});
 });
 
+// route for live-scraping of station information from Citi-bike site
 router.get('/scrape', function(req, res){
 	scrapeStations(req, res);
 })
@@ -25,9 +27,10 @@ function scrapeStations(req, res) {
 	// Get all stations via GET request to URL
 	request(url, function(error, response, html){
 		if(!error){
-			var allStations = JSON.parse(html).data.stations;
+			let allStations = JSON.parse(html).data.stations;
 			// attaches last updated time to stations object
-			// allStations.time = JSON.parse(html).last_updated;
+			var updateTime = JSON.parse(html).last_updated;
+			allStations.push({lastUpdate: updateTime});
 			res.send(allStations);
 		}
 	})

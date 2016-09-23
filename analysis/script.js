@@ -29,6 +29,13 @@ let attachTimes = (groupedStations) => {
     }
 }
 
+let byDay = R.groupBy(R.prop("dayOfWeek"));
+
+let byMeridian = R.groupBy(R.prop("meridian"));
+
+let byHour = R.groupBy(R.prop("hour"));
+
+
 // start local server to use d3
 // python -m SimpleHTTPServer 8888 &
 
@@ -41,7 +48,66 @@ d3.csv('http://localhost:8888/out.csv', function(data) {
 
     attachTimes(stationGroupObj);
 
-    console.log(stationGroupObj[72])
+    let dayObj = {};
+
+    // for each station ID key, make value object of key/value pairs such that
+    // "Wednesday": [array of station objects]
+    for (let station in stationGroupObj) {
+        dayObj[station] = byDay(stationGroupObj[station]);
+    }
+
+    // sorts each day into AM/PM
+    let amPmObj = {};
+
+    for (let id in dayObj) {
+        amPmObj[id] = {};
+        for (let day in dayObj[id]) {
+            amPmObj[id][day] = byMeridian(dayObj[id][day]);
+        }
+    }
+
+    // sort by hour
+
+    let hourObj = {};
+
+    for (let id in amPmObj) {
+        hourObj[id] = {};
+        for (let day in amPmObj[id]) {
+            hourObj[id][day] = {};
+            for (let meridian in amPmObj[id][day]) {
+                hourObj[id][day][meridian] = byHour(amPmObj[id][day][meridian]);
+            }
+        }
+    }
+
+
+    // calculates avg of bikes / avg of docks per station per hour
+    let averages = {};
+
+    for (let id in hourObj) {
+        averages[id] = {};
+        for (let day in hourObj[id]) {
+            averages[id][day] = {};
+            for (let meridian in hourObj[id][day]) {
+                averages[id][day][meridian] = {};
+                for (let hour in hourObj[id][day][meridian]) {
+                    averages[id][day][meridian][hour] = {};
+                    let bikes = [];
+                    let docks = [];
+                    for (let point in hourObj[id][day][meridian][hour]) {
+                      bikes.push(hourObj[id][day][meridian][hour][point]["NUM BIKES AVAILABLE"]);
+                      docks.push(hourObj[id][day][meridian][hour][point]["NUM DOCKS AVAILABLE"]);
+                    }
+                    averages[id][day][meridian][hour]["bikes"] = R.mean(bikes);
+                    averages[id][day][meridian][hour]["docks"] = R.mean(docks);
+                }
+            }
+        }
+    }
+
+    // console.log(averages[72]['Friday']['am']['9']);
+
+
 
 })
 
